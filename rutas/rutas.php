@@ -14,11 +14,8 @@ if(count(array_filter($arrayRutas))== 1){
 		//PETICIONES DE TIPO POST
 		  if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
-			$json = array(
-				"detalle" =>"estoy en registro"
-			);
-			echo json_encode($json, true);
-			return;
+			$registro = new ClientesCtr();
+			$registro->create();
 		  }
 		
 	}
@@ -27,11 +24,17 @@ if(count(array_filter($arrayRutas))== 1){
 		//PETICIONES DE TIPO GET
 		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
-			$json = array(
-				"detalle" =>"estoy en cursos"
-			);
-			echo json_encode($json, true);
-			return;
+		$cursos = new CursosCtr ();
+		$cursos->index();
+		  }
+	
+	}
+	if(array_filter($arrayRutas)[2]=="cursos"){
+		//PETICIONES DE TIPO GET
+		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
+
+		$cursos = new CursosCtr ();
+		$cursos->create();
 		  }
 	
 	}

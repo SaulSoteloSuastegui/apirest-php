@@ -15,6 +15,15 @@ class CursosCtr{
 		return;
 
 	}
+	public function create(){
+		$json = array(
+			"detalle" =>"Crear curso"
+
+		);
+		echo json_encode($json, true);
+		return;
+
+	}
 
 
 }
