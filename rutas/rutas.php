@@ -39,13 +39,24 @@ if(count(array_filter($arrayRutas))== 1){
 	
 	}
 	if(array_filter($arrayRutas)[2]=="curso" && is_numeric(array_filter($arrayRutas)[3])){
+
+		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
+			//echo '<pre>'; print_r(array_filter($arrayRutas)); echo'</pre>';
+			$curso = new CursosCtr();
+		    $curso->show(array_filter($arrayRutas)[3]);
+		}
+
 		//echo '<pre>'; print_r($_SERVER["REQUEST_METHOD"]); echo'</pre>';
 		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "PUT"){
-		$json = array(
-			"detalle" =>"un curso"
-		);
-		echo json_encode($json, true);
-		return;
+			//echo '<pre>'; print_r(array_filter($arrayRutas)); echo'</pre>';
+			$editarCursos = new CursosCtr();
+		    $editarCursos->update(array_filter($arrayRutas)[3]);
+		}
+
+		if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "DELETE"){
+			//echo '<pre>'; print_r(array_filter($arrayRutas)); echo'</pre>';
+			$eliminarCurso = new CursosCtr();
+		    $eliminarCurso->delete(array_filter($arrayRutas)[3]);
 		}
 	}
 
